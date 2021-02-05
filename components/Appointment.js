@@ -3,24 +3,27 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Group = ({ title, items}) => {
-    <Group>
-        <GroupTitle>{title}</GroupTitle>
-        {
-            items.map(item => {
-                <GroupItem>
-                    <Avatar source={{uri: `${item.user.avatar}`}} />
-                    <View style={{flex: 1}}>
-                        <FullName>{item.user.fullName}</FullName>
-                        <GrayText>{item.description}</GrayText>
-                    </View>
-                    <GroupDate active>{item.time}</GroupDate>
-                </GroupItem>
+const Appointment = ({ title, items}) => {
+   return (
+       <GroupBlock>
+           <GroupTitle>{title}</GroupTitle>
+           {
+               items.map((item, index) => {
+                   <GroupItem key={index}>
+                       <Avatar source={{uri: `${item.user.avatar}`}} />
+                       <View style={{flex: 1}}>
+                           <FullName>{item.user.fullName}</FullName>
+                           <GrayText>{item.description}</GrayText>
+                       </View>
+                       <GroupDate active={item.active}>{item.time}</GroupDate>
+                   </GroupItem>
 
-            })
-        }
-    </Group>
+               })
+           }
+       </GroupBlock>
+   )
 }
+export default Appointment;
 
 Group.defaultProps = {
     title: 'Untitled',
@@ -67,12 +70,9 @@ const GroupItem = styled.TouchableOpacity`
   border-bottom-color: #f3f3f3;
 `;
 
-const GroupTitle = styled.Text`
-  font-weight: 800;
-  font-size: 22px;
-  color: #000000;
-`;
 
-const Group = styled.View`
+
+const GroupBlock = styled.View`
   padding: 0 20px;
+  margin-bottom: 25px;
 `;
