@@ -81,6 +81,10 @@ const PlusButton = styled.TouchableOpacity`
     position: absolute;
     right: 25px;
     bottom: 25px;
+    shadow-color: '#2A86FF';
+    shadow-opacity: 0.7;
+    shadow-radius: 4.5;
+    elevation: 4;           
 `;
 
 const Container = styled.View`
