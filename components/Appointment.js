@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import styled from 'styled-components/native';
 
-const Appointment = ({user, description, time, active}) => {
+const Appointment = ({user, description, time, active, navigate}) => {
     return (
-        <GroupItem key={index}>
+        <GroupItem onPress={navigate.bind(this, 'Patient')}>
             <Avatar source={{uri: `${user.avatar}`}}/>
             <View style={{flex: 1}}>
                 <FullName>{user.fullName}</FullName>
@@ -27,7 +27,7 @@ const GroupDate = styled.Text`
   height: 32px;
   align-items: center;
   text-align: center;
-  line-height: 28px;
+  line-height: 30px;
 `;
 
 

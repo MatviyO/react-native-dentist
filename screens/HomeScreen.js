@@ -2,6 +2,7 @@ import {SectionList} from "react-native";
 import {Appointment, SectionTitle} from "../components";
 import {Ionicons} from "@expo/vector-icons";
 import styled from "styled-components/native/dist/styled-components.native.esm";
+import React from "react";
 
 const DATA = [
     {
@@ -53,22 +54,34 @@ const DATA = [
 ]
 
 
-export const HomeScreen = () => {
-    return(
-        <Container>
-            <SectionList
-                sections={DATA}
-                keyExtractor={(item, index) => index}
-                renderItem={({item}) => <Appointment {...item} />}
-                renderSectionHeader={({section: {title}}) => (
-                    <SectionTitle>{title}</SectionTitle>
-                )}
-            />
-            <PlusButton>
-                <Ionicons name="ios-add" size={36} color="white"/>
-            </PlusButton>
-        </Container>
-    )
+export class HomeScreen extends React.Component {
+    static navigationOptions = {
+        title: 'patients',
+        headerColor: '#2A86FF',
+        headerStyle: {
+            elevation: 0.5,
+            shadowOpacity: 0.5
+        }
+    }
+    render() {
+        const {navigation} = this.props;
+        return(
+            <Container>
+                <SectionList
+                    sections={DATA}
+                    keyExtractor={(item, index) => index}
+                    renderItem={({item}) => <Appointment
+                        navigate={navigation.navigate} {...item} />}
+                    renderSectionHeader={({section: {title}}) => (
+                        <SectionTitle>{title}</SectionTitle>
+                    )}
+                />
+                <PlusButton>
+                    <Ionicons name="ios-add" size={36} color="white"/>
+                </PlusButton>
+            </Container>
+        )
+    }
 }
 
 const PlusButton = styled.TouchableOpacity`
@@ -88,5 +101,4 @@ const PlusButton = styled.TouchableOpacity`
 
 const Container = styled.View`
   flex: 1;
-  margin-top: 30px;
 `;
