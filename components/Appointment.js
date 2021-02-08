@@ -1,14 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import styled from 'styled-components/native';
-import {GrayText} from './GreyText'
+import {GreyText} from '../components'
 const Appointment = ({user, description, time, active, navigate }) => {
     return (
         <GroupItem onPress={navigate.bind(this, 'Patient')}>
             <Avatar source={{uri: `${user.avatar}`}}/>
             <View style={{flex: 1}}>
                 <FullName>{user.fullName}</FullName>
-                <GrayText>{description}</GrayText>
+                <GreyText>{description}</GreyText>
             </View>
             <GroupDate active={active}>{time}</GroupDate>
         </GroupItem>

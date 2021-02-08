@@ -1,7 +1,7 @@
 import {SectionList} from "react-native";
 import {Appointment, SectionTitle} from "../components";
 import {Ionicons} from "@expo/vector-icons";
-import styled from "styled-components/native/dist/styled-components.native.esm";
+import styled from "styled-components/native";
 import React from "react";
 
 const DATA = [
