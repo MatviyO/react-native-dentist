@@ -54,35 +54,33 @@ const DATA = [
 ]
 
 
-export class HomeScreen extends React.Component {
-    static navigationOptions = {
-        title: 'patients',
-        headerColor: '#2A86FF',
-        headerStyle: {
-            elevation: 0.5,
-            shadowOpacity: 0.5
-        }
-    }
-    render() {
-        const {navigation} = this.props;
-        return(
-            <Container>
-                <SectionList
-                    sections={DATA}
-                    keyExtractor={(item, index) => index}
-                    renderItem={({item}) => <Appointment
-                        navigate={navigation.navigate} {...item} />}
-                    renderSectionHeader={({section: {title}}) => (
-                        <SectionTitle>{title}</SectionTitle>
-                    )}
-                />
-                <PlusButton>
-                    <Ionicons name="ios-add" size={36} color="white"/>
-                </PlusButton>
-            </Container>
-        )
+const HomeScreen = ({navigation}) => (
+    <Container>
+        <SectionList
+            sections={DATA}
+            keyExtractor={(item, index) => index}
+            renderItem={({item}) => <Appointment
+                navigate={navigation.navigate} {...item} />}
+            renderSectionHeader={({section: {title}}) => (
+                <SectionTitle>{title}</SectionTitle>
+            )}
+        />
+        <PlusButton>
+            <Ionicons name="ios-add" size={36} color="white"/>
+        </PlusButton>
+    </Container>
+)
+
+HomeScreen.navigationOptions = {
+    title: 'Patients',
+    headerColor: '#2A86FF',
+    headerTransparent: false,
+    headerStyle: {
+        elevation: 0.5,
+        shadowOpacity: 0.5
     }
 }
+export default HomeScreen;
 
 const PlusButton = styled.TouchableOpacity`
     align-items: center;
@@ -93,10 +91,6 @@ const PlusButton = styled.TouchableOpacity`
     position: absolute;
     right: 25px;
     bottom: 25px;
-    shadow-color: '#2A86FF';
-    shadow-opacity: 0.7;
-    shadow-radius: 4.5;
-    elevation: 4;           
 `;
 
 const Container = styled.View`
