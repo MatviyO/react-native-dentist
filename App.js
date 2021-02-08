@@ -10,10 +10,10 @@ const AppNavigator = createStackNavigator({
     Patient: {
         screen: PatientScreen
     }
-    },
-    {
-        initialRouteName: 'Patient'
     })
+    // {
+    //     initialRouteName: 'Patient'
+    // })
 ;
 
 export default createAppContainer(AppNavigator)

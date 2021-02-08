@@ -1,8 +1,9 @@
-import {SectionList} from "react-native";
+import React from "react";
+import {SectionList, StyleSheet} from "react-native";
 import {Appointment, SectionTitle} from "../components";
 import {Ionicons} from "@expo/vector-icons";
 import styled from "styled-components/native";
-import React from "react";
+
 
 const DATA = [
     {
@@ -23,7 +24,7 @@ const DATA = [
                 active: false,
                 user: {
                     fullName: 'Georgia Name',
-                    avatar: 'https://sun9-17.userapi.com/s/v1/if1/5AzvhAQqWR8f-FTze5gyImXOKyXEXsPF8OnxyA2hXHccvNuzg5D5xbsqMs__M3E_jeF8cA.jpg?size=100x0&quality=96&crop=0,25,909,909&ava=1'
+                    avatar: 'https://sun9-18.userapi.com/s/v1/if1/tPqJ1XWMvcq06j5sX78RY8BTLAV8B5aZ6VG2YtQgeUubrGwZYKCZq02Vu0tXeJzqfqgVohmj.jpg?size=100x0&quality=96&crop=25,0,1711,1711&ava=1'
                 }
             },
         ]
@@ -46,7 +47,7 @@ const DATA = [
                 active: false,
                 user: {
                     fullName: 'Georgia Name',
-                    avatar: 'https://sun9-17.userapi.com/s/v1/if1/5AzvhAQqWR8f-FTze5gyImXOKyXEXsPF8OnxyA2hXHccvNuzg5D5xbsqMs__M3E_jeF8cA.jpg?size=100x0&quality=96&crop=0,25,909,909&ava=1'
+                    avatar: 'https://sun9-18.userapi.com/s/v1/if1/tPqJ1XWMvcq06j5sX78RY8BTLAV8B5aZ6VG2YtQgeUubrGwZYKCZq02Vu0tXeJzqfqgVohmj.jpg?size=100x0&quality=96&crop=25,0,1711,1711&ava=1'
                 }
             },
         ]
@@ -57,6 +58,7 @@ const DATA = [
 const HomeScreen = ({navigation}) => (
     <Container>
         <SectionList
+            style={style.borderList}
             sections={DATA}
             keyExtractor={(item, index) => index}
             renderItem={({item}) => <Appointment
@@ -71,6 +73,12 @@ const HomeScreen = ({navigation}) => (
     </Container>
 )
 
+const style = StyleSheet.create({
+    borderList: {
+        backgroundColor: '#fff'
+    }
+})
+
 HomeScreen.navigationOptions = {
     title: 'Patients',
     headerColor: '#2A86FF',
@@ -82,8 +90,11 @@ HomeScreen.navigationOptions = {
 }
 export default HomeScreen;
 
+
 const PlusButton = styled.TouchableOpacity`
+    display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 50px;
     width: 64px;
     height: 64px;

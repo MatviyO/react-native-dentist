@@ -1,25 +1,41 @@
 import React from 'react'
 import {GreyText, Button} from '../components'
 import styled from "styled-components/native";
-import Button from "../components/Button";
+import {Foundation} from "@expo/vector-icons";
+
 const PatientScreen = () => (
     <Container>
         <PatientFullName>Guan Maria</PatientFullName>
         <GreyText>+ 380 87 44 44 344</GreyText>
         <PattientButtons>
-            <Button>Formula</Button>
-            <Button color="green">P</Button>
+            <FormulaButtonView>
+                <Button>Formula</Button>
+            </FormulaButtonView>
+            <PhoneButtonView>
+                <Button color="#84D269"> <Foundation name="telephone" size={22} color="white" /></Button>
+            </PhoneButtonView>
         </PattientButtons>
+
+        <PatientAppointments></PatientAppointments>
     </Container>
 )
-const FormulaButton = styled.Button`
-flex: 1;
+
+const PatientAppointments = styled.View`
+  flex: 1;
+  background: #f8fafd;  
+`;
+const FormulaButtonView = styled.View`
+    flex: 1;
+`;
+const PhoneButtonView = styled.View`
+    margin-left: 10px;
+    width: 45px;
 `;
 
 const PattientButtons = styled.View`
-    display: flex;
-    flex-firection: row;
-    margin-top 20px;
+    flex: 1;
+    flex-direction: row;
+    margin-top: 20px;
 `;
 
 const PatientFullName = styled.Text`
