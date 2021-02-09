@@ -1,9 +1,9 @@
-import React from "react";
-import {SectionList, StyleSheet} from "react-native";
+import React, { useState, useEffect } from 'react'
+import {SectionList, StyleSheet, View, Text} from "react-native";
 import {Appointment, SectionTitle} from "../components";
 import {Ionicons} from "@expo/vector-icons";
 import styled from "styled-components/native";
-
+import * as Location from 'expo-location';
 
 const DATA = [
     {
@@ -55,29 +55,83 @@ const DATA = [
 ]
 
 
-const HomeScreen = ({navigation}) => (
-    <Container>
-        <SectionList
-            style={style.borderList}
-            sections={DATA}
-            keyExtractor={(item, index) => index}
-            renderItem={({item}) => <Appointment
-                navigate={navigation.navigate} {...item} />}
-            renderSectionHeader={({section: {title}}) => (
-                <SectionTitle>{title}</SectionTitle>
-            )}
-        />
-        <PlusButton>
-            <Ionicons name="ios-add" size={36} color="white"/>
-        </PlusButton>
-    </Container>
-)
+const HomeScreen = ({navigation}) => {
+    const array = [];
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestPermissionsAsync();
+            if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+
+            let location = await Location.getCurrentPositionAsync({});
+            setLocation(location.coords);
+            console.log(location.coords)
+            console.log(typeof location.coords)
+            traking()
+        })();
+    }, []);
+    const traking = () => {
+        setTimeout(() => {
+            (async () => {
+
+                let location = await Location.getCurrentPositionAsync({});
+                setLocation(location.coords);
+                array.push(location.coords)
+                console.log('array', array)
+            })();
+        }, 1000)
+    }
+
+    let text = 'Waiting..';
+    if (errorMsg) {
+        text = errorMsg;
+    } else if (location) {
+        text = JSON.stringify(location);
+    }
+   return (
+       <Container>
+           <SectionList
+               style={style.borderList}
+               sections={DATA}
+               keyExtractor={(item, index) => index}
+               renderItem={({item}) => <Appointment
+                   navigate={navigation.navigate} {...item} />}
+               renderSectionHeader={({section: {title}}) => (
+                   <SectionTitle>{title}</SectionTitle>
+               )}
+           />
+           {/*<GroupItem>*/}
+           {/*    <View >*/}
+           {/*        <Text>{text}</Text>*/}
+           {/*    </View>*/}
+           {/*</GroupItem>*/}
+
+           <PlusButton>
+               <Ionicons name="ios-add" size={36} color="white"/>
+           </PlusButton>
+       </Container>
+   )
+}
 
 const style = StyleSheet.create({
     borderList: {
         backgroundColor: '#fff'
     }
 })
+const GroupItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  border-bottom-width: 1px;
+  border-bottom-color: #f3f3f3;
+  margin-bottom: 50px;
+`;
+
 
 HomeScreen.navigationOptions = {
     title: 'Patients',

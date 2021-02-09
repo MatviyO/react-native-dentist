@@ -1,23 +1,29 @@
 import React from 'react'
+import {Text, View} from "react-native";
 import {GreyText, Button} from '../components'
 import styled from "styled-components/native";
 import {Foundation} from "@expo/vector-icons";
 
 const PatientScreen = () => (
-    <Container>
-        <PatientFullName>Guan Maria</PatientFullName>
-        <GreyText>+ 380 87 44 44 344</GreyText>
-        <PattientButtons>
-            <FormulaButtonView>
-                <Button>Formula</Button>
-            </FormulaButtonView>
-            <PhoneButtonView>
-                <Button color="#84D269"> <Foundation name="telephone" size={22} color="white" /></Button>
-            </PhoneButtonView>
-        </PattientButtons>
+    <View>
+        <Container>
 
-        <PatientAppointments></PatientAppointments>
-    </Container>
+                <PatientFullName>Guan Maria</PatientFullName>
+                <GreyText>+ 380 87 44 44 344</GreyText>
+                <PattientButtons>
+                    <FormulaButtonView>
+                        <Button>Formula</Button>
+                    </FormulaButtonView>
+                    <PhoneButtonView>
+                        <Button color="#84D269"> <Foundation name="telephone" size={22} color="white" /></Button>
+                    </PhoneButtonView>
+                </PattientButtons>
+
+
+            <PatientAppointments></PatientAppointments>
+        </Container>
+    </View>
+
 )
 
 const PatientAppointments = styled.View`
@@ -46,6 +52,7 @@ const PatientFullName = styled.Text`
 `;
 const Container = styled.View`
     padding: 25px;
+    flex: 1;
     
 `;
 

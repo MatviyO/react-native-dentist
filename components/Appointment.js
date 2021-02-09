@@ -2,7 +2,20 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import {GreyText} from '../components'
+import GetLocation from 'react-native-get-location'
+
 const Appointment = ({user, description, time, active, navigate }) => {
+    GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 15000,
+    })
+        .then(location => {
+            console.log(location);
+        })
+        .catch(error => {
+            const { code, message } = error;
+            console.warn(code, message);
+        })
     return (
         <GroupItem onPress={navigate.bind(this, 'Patient')}>
             <Avatar source={{uri: `${user.avatar}`}}/>
