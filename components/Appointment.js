@@ -1,10 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import styled from 'styled-components/native';
-import {GreyText} from '../components'
+import GreyText from './GreyText'
 import GetLocation from 'react-native-get-location'
+import Badge from "./Badge";
 
-const Appointment = ({user, description, time, active, navigate }) => {
+const Appointment = ({item ,navigate }) => {
+    const {user, description, time, active} = item;
     GetLocation.getCurrentPosition({
         enableHighAccuracy: true,
         timeout: 15000,
@@ -17,31 +19,19 @@ const Appointment = ({user, description, time, active, navigate }) => {
             console.warn(code, message);
         })
     return (
-        <GroupItem onPress={navigate.bind(this, 'Patient')}>
+        <GroupItem onPress={navigate.bind(this, 'Patient', item)}>
             <Avatar source={{uri: `${user.avatar}`}}/>
             <View style={{flex: 1}}>
                 <FullName>{user.fullName}</FullName>
                 <GreyText>{description}</GreyText>
             </View>
-            <GroupDate active={active}>{time}</GroupDate>
+            <Badge active={active}>{time}</Badge>
         </GroupItem>
     )
 }
 export default Appointment;
 
 
-const GroupDate = styled.Text`
-  background: ${props => (props.active ? '#2A86FF' : '#e9f5ff')};
-  color: ${props => (props.active ? '#fff' : '#4294ff')};
-  border-radius: 18px;
-  font-weight: 600;
-  font-size: 14px;
-  width: 70px;
-  height: 32px;
-  align-items: center;
-  text-align: center;
-  line-height: 30px;
-`;
 
 
 const FullName = styled.Text`

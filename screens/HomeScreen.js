@@ -4,95 +4,42 @@ import {Appointment, SectionTitle} from "../components";
 import {Ionicons} from "@expo/vector-icons";
 import styled from "styled-components/native";
 import * as Location from 'expo-location';
-
-const DATA = [
-    {
-        title: '5 February',
-        data: [
-            {
-                time: '12:30',
-                description: 'description, for description',
-                active: true,
-                user: {
-                    fullName: 'Seria Name',
-                    avatar: 'https://sun9-17.userapi.com/s/v1/if1/5AzvhAQqWR8f-FTze5gyImXOKyXEXsPF8OnxyA2hXHccvNuzg5D5xbsqMs__M3E_jeF8cA.jpg?size=100x0&quality=96&crop=0,25,909,909&ava=1'
-                }
-            },
-            {
-                time: '14:30',
-                description: 'description, for description',
-                active: false,
-                user: {
-                    fullName: 'Georgia Name',
-                    avatar: 'https://sun9-18.userapi.com/s/v1/if1/tPqJ1XWMvcq06j5sX78RY8BTLAV8B5aZ6VG2YtQgeUubrGwZYKCZq02Vu0tXeJzqfqgVohmj.jpg?size=100x0&quality=96&crop=25,0,1711,1711&ava=1'
-                }
-            },
-        ]
-    },
-    {
-        title: '6 February',
-        data: [
-            {
-                time: '12:30',
-                description: 'description, for description',
-                active: true,
-                user: {
-                    fullName: 'Seria Name',
-                    avatar: 'https://sun9-17.userapi.com/s/v1/if1/5AzvhAQqWR8f-FTze5gyImXOKyXEXsPF8OnxyA2hXHccvNuzg5D5xbsqMs__M3E_jeF8cA.jpg?size=100x0&quality=96&crop=0,25,909,909&ava=1'
-                }
-            },
-            {
-                time: '14:30',
-                description: 'description, for description',
-                active: false,
-                user: {
-                    fullName: 'Georgia Name',
-                    avatar: 'https://sun9-18.userapi.com/s/v1/if1/tPqJ1XWMvcq06j5sX78RY8BTLAV8B5aZ6VG2YtQgeUubrGwZYKCZq02Vu0tXeJzqfqgVohmj.jpg?size=100x0&quality=96&crop=25,0,1711,1711&ava=1'
-                }
-            },
-        ]
-    },
-]
-
+import axios from "axios";
 
 const HomeScreen = ({navigation}) => {
-    const array = [];
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
 
+    // const [location, setLocation] = useState(null);
+    // const [errorMsg, setErrorMsg] = useState(null);
+    //
+    // useEffect(() => {
+    //     (async () => {
+    //         let { status } = await Location.requestPermissionsAsync();
+    //         if (status !== 'granted') {
+    //             setErrorMsg('Permission to access location was denied');
+    //             return;
+    //         }
+    //
+    //         let location = await Location.getCurrentPositionAsync({});
+    //         setLocation(location.coords);
+    //         console.log(location.coords)
+    //         console.log(typeof location.coords)
+    //         traking()
+    //     })();
+    // }, []);
+    //
+    // let text = 'Waiting..';
+    // if (errorMsg) {
+    //     text = errorMsg;
+    // } else if (location) {
+    //     text = JSON.stringify(location);
+    // }
+    const [data, setData] = useState(null);
     useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-
-            let location = await Location.getCurrentPositionAsync({});
-            setLocation(location.coords);
-            console.log(location.coords)
-            console.log(typeof location.coords)
-            traking()
-        })();
-    }, []);
-    const traking = () => {
-        setTimeout(() => {
-            (async () => {
-
-                let location = await Location.getCurrentPositionAsync({});
-                setLocation(location.coords);
-                array.push(location.coords)
-                console.log('array', array)
-            })();
-        }, 1000)
-    }
-
-    let text = 'Waiting..';
-    if (errorMsg) {
-        text = errorMsg;
-    } else if (location) {
-        text = JSON.stringify(location);
-    }
+        axios.get('https://trycode.pw/c/7LPCJ.json').then(({data}) => {
+            const result = 
+            setData(data);
+        })
+    }, [])
    return (
        <Container>
            <SectionList
@@ -100,7 +47,7 @@ const HomeScreen = ({navigation}) => {
                sections={DATA}
                keyExtractor={(item, index) => index}
                renderItem={({item}) => <Appointment
-                   navigate={navigation.navigate} {...item} />}
+                   navigate={navigation.navigate} item={item} />}
                renderSectionHeader={({section: {title}}) => (
                    <SectionTitle>{title}</SectionTitle>
                )}
