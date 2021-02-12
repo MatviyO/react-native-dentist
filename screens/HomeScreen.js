@@ -36,8 +36,6 @@ const HomeScreen = ({navigation}) => {
     const [data, setData] = useState(null);
     useEffect(() => {
         axios.get('https://trycode.pw/c/7LPCJ.json').then(({data}) => {
-
-            
             setData(data);
         })
     }, [])
