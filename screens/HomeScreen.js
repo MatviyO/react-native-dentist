@@ -11,6 +11,7 @@ const HomeScreen = ({navigation}) => {
     const [data, setData] = useState(null);
     useEffect(() => {
         axios.get('https://trycode.pw/c/DL5L6.json').then(({data}) => {
+            console.log(data)
             setData(data);
         })
     }, [])

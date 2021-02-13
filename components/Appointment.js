@@ -2,27 +2,15 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import GreyText from './GreyText'
-import GetLocation from 'react-native-get-location'
 import Badge from "./Badge";
 
 const Appointment = ({item ,navigate }) => {
-    const {user, description, time, active} = item;
-    GetLocation.getCurrentPosition({
-        enableHighAccuracy: true,
-        timeout: 15000,
-    })
-        .then(location => {
-            console.log(location);
-        })
-        .catch(error => {
-            const { code, message } = error;
-            console.warn(code, message);
-        })
+    const {user: { avatar, fullName}, description, time, active} = item;
     return (
         <GroupItem onPress={navigate.bind(this, 'Patient', item)}>
-            <Avatar source={{uri: `${user.avatar}`}}/>
+            <Avatar source={{uri: `${avatar}`}}/>
             <View style={{flex: 1}}>
-                <FullName>{user.fullName}</FullName>
+                <FullName>{fullName}</FullName>
                 <GreyText>{description}</GreyText>
             </View>
             <Badge active={active}>{time}</Badge>

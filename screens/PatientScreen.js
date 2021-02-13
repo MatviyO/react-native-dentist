@@ -2,7 +2,7 @@ import React from 'react'
 import {Text, View} from "react-native";
 import {GreyText, Button, Badge} from '../components'
 import styled from "styled-components/native";
-import {Foundation, Ionicons} from "@expo/vector-icons";
+import {Feather, Foundation, Ionicons} from "@expo/vector-icons";
 
 const PatientScreen = ({navigation}) => (
     <View style={{flex: 1}}>
@@ -18,10 +18,12 @@ const PatientScreen = ({navigation}) => (
                 </PhoneButtonView>
             </PattientButtons>
         </PatientDetails>
-
         <PatientAppointments>
             <Container>
                 <AppointmentCard>
+                    <MoreButton>
+                        <Feather  name="more-vertical" size={24} color="rgba(0,0,0, 0.4)" />
+                    </MoreButton>
                     <AppoinmentCardRow>
                         <Ionicons name="md-medical" size={22} color="#a3a3a3" />
                         <AppoinmentCardLabel>tooth: <Text style={{ fontWeight: '700' }}>12</Text></AppoinmentCardLabel>
@@ -41,7 +43,11 @@ const PatientScreen = ({navigation}) => (
     </View>
 
 )
-
+const MoreButton = styled.TouchableOpacity`
+    position: absolute;
+    right: 25px;
+    top: 25px;
+`;
 const AppoinmentCardLabel = styled.Text`
     font-size: 16px;
     margin-left: 10px;
