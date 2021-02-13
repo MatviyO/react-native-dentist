@@ -8,31 +8,6 @@ import axios from "axios";
 
 const HomeScreen = ({navigation}) => {
 
-    // const [location, setLocation] = useState(null);
-    // const [errorMsg, setErrorMsg] = useState(null);
-    //
-    // useEffect(() => {
-    //     (async () => {
-    //         let { status } = await Location.requestPermissionsAsync();
-    //         if (status !== 'granted') {
-    //             setErrorMsg('Permission to access location was denied');
-    //             return;
-    //         }
-    //
-    //         let location = await Location.getCurrentPositionAsync({});
-    //         setLocation(location.coords);
-    //         console.log(location.coords)
-    //         console.log(typeof location.coords)
-    //         traking()
-    //     })();
-    // }, []);
-    //
-    // let text = 'Waiting..';
-    // if (errorMsg) {
-    //     text = errorMsg;
-    // } else if (location) {
-    //     text = JSON.stringify(location);
-    // }
     const [data, setData] = useState(null);
     useEffect(() => {
         axios.get('https://trycode.pw/c/7LPCJ.json').then(({data}) => {
@@ -51,12 +26,7 @@ const HomeScreen = ({navigation}) => {
                    <SectionTitle>{title}</SectionTitle>
                )}
            />
-           {/*<GroupItem>*/}
-           {/*    <View >*/}
-           {/*        <Text>{text}</Text>*/}
-           {/*    </View>*/}
-           {/*</GroupItem>*/}
-
+         
            <PlusButton>
                <Ionicons name="ios-add" size={36} color="white"/>
            </PlusButton>
