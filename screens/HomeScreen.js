@@ -10,23 +10,23 @@ const HomeScreen = ({navigation}) => {
 
     const [data, setData] = useState(null);
     useEffect(() => {
-        axios.get('https://trycode.pw/c/7LPCJ.json').then(({data}) => {
+        axios.get('https://trycode.pw/c/DL5L6.json').then(({data}) => {
             setData(data);
         })
     }, [])
    return (
        <Container>
-           <SectionList
+           {data && <SectionList
                style={style.borderList}
-               sections={DATA}
+               sections={data}
                keyExtractor={(item, index) => index}
                renderItem={({item}) => <Appointment
-                   navigate={navigation.navigate} item={item} />}
+                   navigate={navigation.navigate} item={item}/>}
                renderSectionHeader={({section: {title}}) => (
                    <SectionTitle>{title}</SectionTitle>
                )}
-           />
-         
+           />}
+
            <PlusButton>
                <Ionicons name="ios-add" size={36} color="white"/>
            </PlusButton>
