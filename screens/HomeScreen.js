@@ -15,6 +15,7 @@ const HomeScreen = ({navigation}) => {
             setData(data);
         })
     }, [])
+    
    return (
        <Container>
            {data && <SectionList
