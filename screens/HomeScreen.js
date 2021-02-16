@@ -3,7 +3,6 @@ import {SectionList, StyleSheet, View, Text} from "react-native";
 import {Appointment, SectionTitle} from "../components";
 import {Ionicons} from "@expo/vector-icons";
 import styled from "styled-components/native";
-import * as Location from 'expo-location';
 import axios from "axios";
 
 const HomeScreen = ({navigation}) => {
@@ -15,7 +14,7 @@ const HomeScreen = ({navigation}) => {
             setData(data);
         })
     }, [])
-    
+
    return (
        <Container>
            {data && <SectionList
