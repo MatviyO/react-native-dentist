@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const AppointmentSchema = new Schema({
-    userId: String,
-    dentNumber: String,
+    userId: {type: Schema.Types.ObjectId, ref: 'Patient'},
+    dentNumber: Number,
     diagnosis: String,
-    phone: String
+    price: Number,
+    date: String,
+    time: String
 }, {timestamps: true})
 
 const Appointment = mongoose.model('Appointment', AppointmentSchema)
