@@ -4,15 +4,19 @@ function PatientController() {
 }
 
 const create = function(req, res) {
+    const data = {
+        fullName: req.body.fullName,
+        phone: req.body.phone
+    }
     Patient.create(data, function(err,doc) {
         if (err) {
             return res.status(500).json({
-                status: 'error',
+                status: false,
                 message: err
             });
         }
         res.status(201).json({
-            status: 'success',
+            status: true,
             data: doc
         })
     })
@@ -23,12 +27,12 @@ const all = function(req, res) {
     PatientController.find({}, function(err, docs) {
         if (err) {
             return res.status(500).json({
-                status: 'error',
+                status: false,
                 message: err
             });
         }
         res.json({
-            status: 'success',
+            status: true,
             data: docs
         })
     })
