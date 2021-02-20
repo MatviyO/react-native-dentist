@@ -3,7 +3,7 @@ const {Patient} = require('../models')
 function PatientController() {
 }
 
-PatientController.prototype.add = function(req, res) {
+const create = function(req, res) {
     Patient.create(data, function(err,doc) {
         if (err) {
             return res.status(500).json({
@@ -18,7 +18,7 @@ PatientController.prototype.add = function(req, res) {
     })
 }
 
-PatientController.prototype.all = function(req, res) {
+const all = function(req, res) {
 
     PatientController.find({}, function(err, docs) {
         if (err) {
@@ -32,8 +32,11 @@ PatientController.prototype.all = function(req, res) {
             data: docs
         })
     })
+}
 
-
+PatientController.prototype = {
+    all,
+    create
 }
 
 module.exports = PatientController
