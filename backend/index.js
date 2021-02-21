@@ -1,12 +1,12 @@
 const express = require('express')
 const cors = require('cors')
-const bodyParser = require('body-parser')
+
 const db = require('./core/db')
 const {PatientController} = require('./controllers')
 const app = express();
 
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors())
 
 app.get('/patients', PatientController.prototype.all);

@@ -24,7 +24,7 @@ const create = function(req, res) {
 
 const all = function(req, res) {
 
-    PatientController.find({}, function(err, docs) {
+    Patient.find({}, function(err, docs) {
         if (err) {
             return res.status(500).json({
                 status: false,
