@@ -13,7 +13,6 @@ app.get('/patients', PatientController.prototype.all);
 app.post('/patients', PatientController.prototype.create);
 
 
-
 app.listen(5000, function(err) {
     if (err) {
         return console.log(err)
