@@ -5,7 +5,6 @@ const db = require('./core/db')
 const { PatientController } = require('./controllers')
 const app = express();
 
-
 app.use(express.json());
 app.use(cors())
 
