@@ -1,4 +1,5 @@
 const {Patient} = require('../models')
+const {validationResult} = require('express-validator')
 
 function PatientController() {
 }
@@ -8,8 +9,16 @@ const create = function(req, res) {
         fullName: req.body.fullName,
         phone: req.body.phone
     }
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty()) {
+        return res.status(422).json({
+            status: false,
+            message: errors.array()
+        });
+    }
     Patient.create(data, function(err,doc) {
-        const errors = validationResult(req);
+
         if (err) {
             return res.status(500).json({
                 status: false,
@@ -17,10 +26,8 @@ const create = function(req, res) {
             });
         }
 
-        if(!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array()});
-        }
-        
+
+
         res.status(201).json({
             status: true,
             data: doc

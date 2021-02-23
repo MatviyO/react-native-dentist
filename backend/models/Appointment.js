@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const AppointmentSchema = new Schema({
-    userId: {type: Schema.Types.ObjectId, ref: 'Patient'},
+    patientId: {type: Schema.Types.ObjectId, ref: 'Patient'},
     dentNumber: Number,
     diagnosis: String,
     price: Number,
