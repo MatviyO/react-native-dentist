@@ -9,12 +9,18 @@ const create = function(req, res) {
         phone: req.body.phone
     }
     Patient.create(data, function(err,doc) {
+        const errors = validationResult(req);
         if (err) {
             return res.status(500).json({
                 status: false,
                 message: err
             });
         }
+
+        if(!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array()});
+        }
+        
         res.status(201).json({
             status: true,
             data: doc
