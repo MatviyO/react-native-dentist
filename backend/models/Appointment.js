@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const {Schema} = mongoose;
 
 const AppointmentSchema = new Schema({
@@ -9,7 +8,7 @@ const AppointmentSchema = new Schema({
     price: Number,
     date: String,
     time: String
-    
+
 }, {timestamps: true})
 
 const Appointment = mongoose.model('Appointment', AppointmentSchema)
