@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
+
 const AppointmentSchema = new Schema({
     patientId: {type: Schema.Types.ObjectId, ref: 'Patient'},
     dentNumber: Number,
@@ -8,7 +9,6 @@ const AppointmentSchema = new Schema({
     price: Number,
     date: String,
     time: String
-
 }, {timestamps: true})
 
 const Appointment = mongoose.model('Appointment', AppointmentSchema)
