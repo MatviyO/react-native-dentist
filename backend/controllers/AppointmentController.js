@@ -23,7 +23,7 @@ const create = function(req, res) {
             message: errors.array()
         });
     }
-    Patient.create(data, function(err,doc) {
+    Appointment.create(data, function(err,doc) {
 
         if (err) {
             return res.status(500).json({
@@ -41,7 +41,7 @@ const create = function(req, res) {
 
 const all = function(req, res) {
 
-    Patient.find({}, function(err, docs) {
+    Appointment.find({}, function(err, docs) {
         if (err) {
             return res.status(500).json({
                 status: false,
