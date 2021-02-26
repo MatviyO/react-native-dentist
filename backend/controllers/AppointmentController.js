@@ -6,6 +6,7 @@ function AppointmentController() {
 }
 
 const create = function(req, res) {
+    const errors = validationResult(req);
     const data = {
         fullName: req.body.fullName,
         patientId: req.body.patientId,
@@ -15,7 +16,7 @@ const create = function(req, res) {
         date: req.body.date,
         time: req.body.time
     }
-    const errors = validationResult(req);
+
 
     if(!errors.isEmpty()) {
         return res.status(422).json({
