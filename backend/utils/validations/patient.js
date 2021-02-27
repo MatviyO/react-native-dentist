@@ -5,6 +5,11 @@ const valiadation = {
         check('fullName').isLength({min: 6}),
         check('phone').isLength({min: 12})
 
+    ],
+    update: [
+        check('fullName').isLength({min: 6}),
+        check('phone').isLength({min: 12})
+
     ]
 }
 
