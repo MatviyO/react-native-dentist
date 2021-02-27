@@ -8,8 +8,7 @@ function AppointmentController() {
 const create = function(req, res) {
     const errors = validationResult(req);
     const data = {
-        fullName: req.body.fullName,
-        patientId: req.body.patientId,
+        patient: req.body.patient,
         dentNumber: req.body.dentNumber,
         diagnosis: req.body.diagnosis,
         price: req.body.price,
@@ -42,7 +41,7 @@ const create = function(req, res) {
 
 const all = function(req, res) {
 
-    Appointment.find({}, function(err, docs) {
+    Appointment.find({}).populate('patient').exec(function(err, docs) {
         if (err) {
             return res.status(500).json({
                 status: false,
