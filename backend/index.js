@@ -11,6 +11,7 @@ app.use(cors())
 
 app.get('/patients',  PatientController.prototype.all);
 app.post('/patients', patientValidation.create, PatientController.prototype.create);
+app.get('/patients/:id',  PatientController.prototype.getById);
 app.patch('/patients/:id',  patientValidation.update, PatientController.prototype.update);
 app.delete('/patients/:id',PatientController.prototype.remove);
 
