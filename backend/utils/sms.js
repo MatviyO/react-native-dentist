@@ -1,6 +1,7 @@
 var http = require('http');
 var querystring = require('querystring');
 var response_code = require('./response_code.json')
+var axios = require('axios')
 
 function SMS(options) {
     this.API_ID = process.env.SMS_TOKEN;
@@ -42,20 +43,13 @@ function SMS(options) {
 
 SMS.prototype.send = function ({number, text, time}) {
     var params = {
-        number,
-        text,
-        time
+        api_id: this.API_ID,
+        to: number,
+        msg: text,
+        json: 1
     }
 
-    return new Promise((resolve, reject) => {
-        axios.get(`https://smsc.ru/sys/send.php?login=femmaservice&psw=service313&phones=0934281256&mes=hello`, params, (resp, err) => {
-            if (resp) {
-                resolve(resp)
-            } else {
-                reject(err)
-            }
-        }, ['ids'])
-    })
+    return axios.get(`https://smsc.ru/sys/send.php?login=${process.env.LOGIN}&psw=${process.env.PASSWORD}&phones=0934281256&mes=hello`)
 
 }
 var SMSru = function () {
