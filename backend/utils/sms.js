@@ -2,6 +2,10 @@ var http = require('http');
 var querystring = require('querystring');
 var response_code = require('./response_code.json')
 
+function SMS() {
+ this.API_ID = process.env.SMS_TOKEN;
+}
+
 var SMSru = function(){
     this.params = [];
     if(arguments.length==2){
