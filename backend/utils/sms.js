@@ -7,7 +7,6 @@ function SMS(options) {
     this.API_ID = process.env.SMS_TOKEN;
     this.isTest = options.isTest
 
-
     this.get = function (path, params, callback, properties_name) {
         for (var key in this.params) params[key] = this.params[key]
         http.get('http://sms.ru/' + path + '?' + querystring.stringify(params), function (res) {
