@@ -48,7 +48,6 @@ SMS.prototype.send = function ({number, text, time}) {
         msg: text,
         json: 1
     }
-
     return axios.get(`https://smsc.ru/sys/send.php?login=${process.env.LOGIN}&psw=${process.env.PASSWORD}&phones=0934281256&mes=hello`)
 
 }
